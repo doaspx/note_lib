@@ -1,0 +1,23 @@
+{
+  "name": "note_lib",
+  "version": "1.0.1",
+  "description": "note book",
+  "main": "index.js",
+  "dependencies": {
+    "lodash": "^4.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/doaspx/note_lib.git"
+  },
+  "author": "dingo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/doaspx/note_lib/issues"
+  },
+  "homepage": "https://github.com/doaspx/note_lib#readme"
+}
