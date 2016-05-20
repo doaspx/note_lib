@@ -84,16 +84,18 @@ var shimmer = module.exports = {
             return function cls_wrapMethod(file) {
                 console.log('【FILE】:' + file);
                 console.log('create wrapped');
-                //(function aa(){
-                //    "use strict";
-                //    _postLoad(load.apply(this, arguments), file);
-                //})();
-
-                return _postLoad(load.apply(this, arguments), file);
+                // //(function aa(){
+                // //    "use strict";
+                // //    _postLoad(load.apply(this, arguments), file);
+                // //})();
+                 var me = this;
+                var _m = arguments;
+                checking(function () {
+                    _postLoad(load.apply(me, _m), file);
+                })
             };
         });
     },
-
     unpatchModule : function unpatchModule() {
         logger.debug("Unwrapping to previous module loader.");
         var Module = require('module');
@@ -113,8 +115,9 @@ function instrument(shortName, fileName, nodule, param) {
 }
 var WRAPPERS =[]
 function _postLoad(nodule, name) {
+    console.log(JSON.stringify(nodule));
     console.log(JSON.stringify(arguments))
- //   var base = path.basename(name);
+    // var base = path.basename(name);
 
     //var wrapper_module = (name === 'pg.js') ? 'pg': base;
     //if (WRAPPERS.indexOf(wrapper_module) !== -1) {
@@ -122,12 +125,15 @@ function _postLoad(nodule, name) {
     //    var filename = path.join(__dirname, '../parsers/wrappers', wrapper_module + '.js');
     //    instrument(base, filename, nodule);
     //}
+    console.log('load end.......');
+
     return nodule;
 }
 
-function checking(){
-    "use strict";
-    setInterval(function(){
-        console.log(new Date());
-    }, 2000)
+
+function checking (mcb) {
+    var i = 0;
+    setTimeout(function () {
+        mcb(null, null);
+    },10000);
 }
